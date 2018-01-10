@@ -7,41 +7,63 @@
     <title>Document</title>
 </head>
 <body>
-    <h1>
-        The Psychic Game </h1>
+    
 
-    <p><strong>Guess what letter I'm thinking of </strong></p>
+<h1>Psychic Game</h1>
+<h2>Guess which vowel I'm thinking of</h2>
+<p id = "wins">Wins: 0</p>
+<p id = "losses">Losses: 0</p>
+<p id = "guessesLeft">Guesses Left: 5</p>
+<p id = "guessesSoFar">Guesses So Far:</p>
 
-    <p id="wins"> </p>
-    <p id="losses"></p>
-    <p id="guesses"></p>
 
+<script>
 
-    <script>
-    var alphabet = ["a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z"];
-
+    var letterChoices = ["a", "e", "i", "o", "u"];
     var wins = 0;
-    var losses = 0;
-    var guesses = 10;
+    var losses = 0; 
+    var guessesLeft = 5;
+    var yourGuesses = [];
+    var yourGuess;
 
-    var letters = alphabetLetters[Math.floor(Math.random() * alphabetLetters.length)]
-    console.log(computerChoice)
-    
+    var computerGuess = letterChoices[Math.floor(Math.random() * letterChoices.length)];
+     console.log("this is the computer guess: " + computerGuess);
 
-      // Captures keyboard input. Depending on the letter pressed it will "call" (execute) different functions.
-      document.onkeyup = function(event) {
-        
-     // Captures the key press, converts it to lowercase, and saves it to a variable.
-        var letter = String.fromCharCode(event.keyCode).toLowerCase();
-        
-    pseudocode:
-    create functions that take the user onkey up events, stores them into the memory
-    and then takes the computer generated letter and compares it to the user input.alphabet
-    if the user input is the same as the computer generated letter, then the user wins, and if 
-    it is not, then the player has to try again.
-    
      
-    </script>
+     document.onkeyup = function(event) {
+       var userGuess = String.fromCharCode(event.keyCode).toLocaleLowerCase();
 
-</body>
+       if (yourGuesses.indexOf(yourGuess) < 0 && computerGuess.indexOf(yourGuess) >=0) {
+           yourGuesses[yourGuesses] = userGuess;
+           guessesLeft--;
+       }
+
+       if (computerGuess === yourGuess){
+           wins++;
+           guessesLeft = 5;
+           yourGuesses = [];
+           computerGuess = letterChoices[Math.floor(Math.random() * letterChoices.length)];
+           
+           console.log ("great job! You won!");
+           console.log("you've won: " + wins + " and you've lost: " + losses + " times");
+       }
+
+       if (guessesLeft === 0){
+            losses++;
+            console.log("dude, you lost, very sad");
+            guessesleft = 5;
+            yourGuesses = [];
+            computerGuess = letterChoices[Math.floor(Math.random() * letterChoices.length)];
+            console.log("you've won: " + wins + " and you've lost: " + losses + " times");
+            
+       }
+     }
+        
+      
+    
+
+    </script>
+    
+  </body>
 </html>
+        
