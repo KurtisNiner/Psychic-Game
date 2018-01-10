@@ -33,7 +33,7 @@
      document.onkeyup = function(event) {
        var userGuess = String.fromCharCode(event.keyCode).toLocaleLowerCase();
 
-       if (yourGuesses.indexOf(yourGuess) < 0 && computerGuess.indexOf(yourGuess) >=0) {
+       if (yourGuesses.indexOf(yourGuess) < 0 ) {
            yourGuesses[yourGuesses] = userGuess;
            guessesLeft--;
        }
